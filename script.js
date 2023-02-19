@@ -60,6 +60,30 @@ document.getElementById("next").addEventListener("click", function(){
 
 jsonFinal = colocarFotos(jsonPhotos, 1);
 
+const url = 'https://summa.upsa.es/j_security_check';
+
+const data = new URLSearchParams();
+data.append('j_username', 'nombre-de-usuario');
+data.append('j_password', 'contraseña');
+
+console.log();
+
+fetch(url, {
+  method: 'POST',
+  body: data,
+  credentials: 'include',
+})
+.then(response => {
+  // Handle the response here
+})
+.catch(error => {
+  // Handle errors here
+});
+
+
+
+ 
+
 function pasarFotos(movimiento){
   guardarRestpuesta()
   document.getElementById("form").reset(); 
