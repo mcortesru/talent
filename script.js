@@ -60,25 +60,18 @@ document.getElementById("next").addEventListener("click", function(){
 
 jsonFinal = colocarFotos(jsonPhotos, 1);
 
-const url = 'https://summa.upsa.es/j_security_check';
 
-const data = new URLSearchParams();
-data.append('j_username', 'nombre-de-usuario');
-data.append('j_password', 'contraseña');
 
-console.log();
 
-fetch(url, {
-  method: 'POST',
-  body: data,
-  credentials: 'include',
-})
-.then(response => {
-  // Handle the response here
-})
-.catch(error => {
-  // Handle errors here
-});
+fetch('http://localhost:3000/')
+  .then(response => response.json())
+  .then(jsonData => {
+    // Hacer algo con el JSON obtenido, por ejemplo:
+    console.log(jsonData);
+  })
+  .catch(error => console.error(error));
+
+
 
 
 
