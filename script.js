@@ -60,7 +60,26 @@ document.getElementById("next").addEventListener("click", function(){
 
 jsonFinal = colocarFotos(jsonPhotos, 1);
 
+
+
+
+fetch('http://localhost:3000/')
+  .then(response => response.json())
+  .then(jsonData => {
+    // Hacer algo con el JSON obtenido, por ejemplo:
+    console.log(jsonData);
+  })
+  .catch(error => console.error(error));
+
+
+
+
+
+ 
+
 function pasarFotos(movimiento){
+  guardarRestpuesta()
+  document.getElementById("form").reset(); 
   if (movimiento == 1){
     let fotoMainAntigua = jsonFinal[1];
     let fotoMainNueva = jsonFinal[0][jsonFinal[0].length - 1];
@@ -86,12 +105,53 @@ function pasarFotos(movimiento){
     jsonFinal[2].push(fotoAmeterEnLaDerechaFinal)
   }
 
-  console.log(jsonFinal);
-
+  recargarRespuesta();
   colocarFotos(jsonFinal, 0);
 }
 
+function guardarRestpuesta(){
+  const evento = form.elements["evento"].value;
+  const fecha = form.elements["fecha"].value;
+  const lugar = form.elements["lugar"].value;
+  const personas = form.elements["personas"].value;
+  const observaciones = form.elements["observaciones"].value;
 
+  if (evento || fecha || lugar || personas || observaciones) {
+    // Crear un objeto JSON con los valores del formulario
+    const data = {
+      evento: evento,
+      fecha: fecha,
+      lugar: lugar,
+      personas: personas,
+      observaciones: observaciones
+    };
+    localStorage.setItem(jsonFinal[1]._id, JSON.stringify(data));
+  }
+}
+
+function recargarRespuesta(){
+  // Obtener el formulario y los campos
+  const form = document.getElementById("form");
+  const evento = form.elements["evento"];
+  const fecha = form.elements["fecha"];
+  const lugar = form.elements["lugar"];
+  const personas = form.elements["personas"];
+  const observaciones = form.elements["observaciones"];
+
+  // Obtener los datos guardados del LocalStorage (si existen)
+  const data = localStorage.getItem(jsonFinal[1]._id);
+  if (data) {
+    // Convertir los datos de JSON a un objeto JavaScript
+    const formData = JSON.parse(data);
+
+    // Rellenar los campos del formulario con los datos guardados
+    evento.value = formData.evento;
+    fecha.value = formData.fecha;
+    lugar.value = formData.lugar;
+    personas.value = formData.personas;
+    observaciones.value = formData.observaciones;
+  }
+}
 
 //Coloca las fotos en los divs al inicio
 function colocarFotos(json, split){
