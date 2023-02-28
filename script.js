@@ -1,51 +1,3 @@
-jsonPhotos = [
-  {
-    "_id": "63e93e2712dc21016c4888ab",
-    "index": 0,
-    "source": "./fotos/img0.png"
-  },
-  {
-    "_id": "63e93e27a2a2f2165444d4d5",
-    "index": 1,
-    "source": "./fotos/img1.png"
-  },
-  {
-    "_id": "63e93e27ecf5a297b472ae70",
-    "index": 2,
-    "source": "./fotos/img2.png"
-  },
-  {
-    "_id": "63e93e27630e58eff6ed2cb2",
-    "index": 3,
-    "source": "./fotos/img3.png"
-  },
-  {
-    "_id": "63e93e272c9b1dcaa5c54689",
-    "index": 4,
-    "source": "./fotos/img4.png"
-  },
-  {
-    "_id": "63e93e27002f1840b2785ab7",
-    "index": 5,
-    "source": "./fotos/img5.png"
-  },
-  {
-    "_id": "63e93e2721e8884621653d27",
-    "index": 6,
-    "source": "./fotos/img6.png"
-  },
-  {
-    "_id": "63e93e271142a7ae8efd9d54",
-    "index": 7,
-    "source": "./fotos/img7.png"
-  },
-  {
-    "_id": "63e93e27ee97d23e56402d95",
-    "index": 8,
-    "source": "./fotos/img8.png"
-  }
-]
-
 document.getElementById("buttomSubmit").addEventListener("click", function() {
   sendSubmit()
 });
@@ -58,18 +10,24 @@ document.getElementById("next").addEventListener("click", function(){
   pasarFotos(-1)
 });
 
-jsonFinal = colocarFotos(jsonPhotos, 1);
-
-
 
 
 fetch('http://localhost:3000/')
   .then(response => response.json())
   .then(jsonData => {
     // Hacer algo con el JSON obtenido, por ejemplo:
-    console.log(jsonData);
-  })
-  .catch(error => console.error(error));
+    console.log(JSON.stringify(jsonData))
+    
+    const modifiedData = jsonData.ids.map(id => {
+      return id.map(innerId => `./fotos/${innerId}.jpeg`);
+    });
+    
+    console.log(modifiedData);
+    
+    console.log(JSON.stringify(modifiedData));
+
+    jsonFinal = colocarFotos(modifiedData, 1);
+  });
 
 
 
@@ -183,7 +141,7 @@ function colocarFotos(json, split){
     div.classList.add("image_container");
     const image = document.createElement('img');
     image.classList.add("img_side");
-    image.src = imageSources1[i].source;
+    image.src = imageSources1[i];
     imagesContainer1.appendChild(div);
     div.appendChild(image);
   }
@@ -192,7 +150,7 @@ function colocarFotos(json, split){
   div.classList.add("image_container");
   const image = document.createElement('img');
   imageContainer.classList.add("img_main");
-  image.src = imageSource.source;
+  image.src = imageSource;
   imageContainer.appendChild(div);
   div.appendChild(image);
     
@@ -201,7 +159,7 @@ function colocarFotos(json, split){
     div.classList.add("image_container");
     const image = document.createElement('img');
     image.classList.add("img_side");
-    image.src = imageSources2[i].source;
+    image.src = imageSources2[i];
     imagesContainer2.appendChild(div);
     div.appendChild(image);
   }

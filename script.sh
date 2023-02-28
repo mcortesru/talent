@@ -18,8 +18,17 @@ ids=${ids//,/ }
 query="parent:(${ids// /%20OR%20})"
 
 # Hacer la consulta con todos los IDs
-echo "https://summa.upsa.es/json/select.vm?query=$query&lentgh=2"
-curl --cookie /tmp/cookies.txt "https://summa.upsa.es/json/select.vm?query=$query&lentgh=2" > ./fotos.json
+curl --cookie /tmp/cookies.txt "https://summa.upsa.es/json/select.vm?query=$query" > ./fotos.json
 
 # Generar un json con los ids de las fotos
 cat fotos.json | grep -o '"id":[^,}]*' | cut -d':' -f2 | sed 's/^\|$/"/g' | jq -n '{"ids": [inputs]}' | tr -d '\n' | tr -d ' ' > ./idsFotos.json
+
+# Obtener los IDs del archivo JSON
+ids=$(grep -oE "\"[0-9]+\"" idsFotos.json | tr -d "\"")
+
+# Iterar sobre cada ID y hacer la solicitud curl
+for id in $ids
+do
+   curl --cookie /tmp/cookies.txt -o "./fotos/${id}.jpeg" "https://summa.upsa.es/medium.raw?id=${id}"
+done
+

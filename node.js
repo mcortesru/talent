@@ -2,7 +2,7 @@ const http = require('http');
 const fs = require('fs');
 const cors = require('cors');
 
-const jsonData = JSON.parse(fs.readFileSync('./fotos.json', 'utf8'));
+const jsonData = JSON.parse(fs.readFileSync('./idsFotos.json', 'utf8'));
 
 const app = http.createServer((req, res) => {
   // Habilitar CORS para todas las solicitudes
