@@ -23,6 +23,9 @@ curl --cookie /tmp/cookies.txt "https://summa.upsa.es/json/select.vm?query=$quer
 # Generar un json con los ids de las fotos
 cat fotos.json | grep -o '"id":[^,}]*' | cut -d':' -f2 | sed 's/^\|$/"/g' | jq -n '{"ids": [inputs]}' | tr -d '\n' | tr -d ' ' > ./idsFotos.json
 
+# Crear la carpeta fotos
+if [ ! -d "./fotos" ]; then mkdir "./fotos"; fi
+
 # Obtener los IDs del archivo JSON
 ids=$(grep -oE "\"[0-9]+\"" idsFotos.json | tr -d "\"")
 

@@ -1,6 +1,14 @@
 const http = require('http');
 const fs = require('fs');
 const cors = require('cors');
+const { execSync } = require('child_process');
+
+try {
+  const result = execSync('sh script.sh');
+  console.log(result.toString());
+} catch (error) {
+  console.error(error);
+}
 
 const jsonData = JSON.parse(fs.readFileSync('./idsFotos.json', 'utf8'));
 

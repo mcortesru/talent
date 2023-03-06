@@ -16,16 +16,11 @@ fetch('http://localhost:3000/')
   .then(response => response.json())
   .then(jsonData => {
     // Hacer algo con el JSON obtenido, por ejemplo:
-    console.log(JSON.stringify(jsonData))
     
     const modifiedData = jsonData.ids.map(id => {
       return id.map(innerId => `./fotos/${innerId}.jpeg`);
     });
     
-    console.log(modifiedData);
-    
-    console.log(JSON.stringify(modifiedData));
-
     jsonFinal = colocarFotos(modifiedData, 1);
   });
 
