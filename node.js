@@ -5,6 +5,7 @@ const { execSync } = require('child_process');
 const express = require('express');
 const path = require('path');
 const app = express();
+var bodyParser = require('body-parser')
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*"); // Permitir solicitudes desde cualquier origen
@@ -51,15 +52,15 @@ app.get('/fotos/:nombre', function(req, res) {
   });
 });
 
-const bodyParser = require('body-parser');
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
 
-app.use(bodyParser.urlencoded({ extended: true }));
+// parse application/json
+app.use(bodyParser.json())
 
 app.post('/', (req, res) => {
-  console.log(req.body); // procesar los datos del formulario
-
-  res.send("Gracias por su colaboración");
-
+  console.log(req.body);
+  res.json(req.body.name);
 });
 
 

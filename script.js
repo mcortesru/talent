@@ -1,3 +1,32 @@
+let fotoSeleccionada;
+
+document.getElementById("submit-btn").addEventListener("click", function(e){
+  event.preventDefault(e);
+
+  // Obtener los valores de los campos del formulario
+  const evento = form.evento.value;
+  const fecha = form.fecha.value;
+  const lugar = form.lugar.value;
+  const personas = form.personas.value;
+  const observaciones = form.observaciones.value;
+
+
+  // Crear un objeto con los valores del formulario
+  const formData = {
+    evento: evento,
+    fecha: fecha,
+    lugar: lugar,
+    personas: personas,
+    observaciones: observaciones,
+    foto: fotoSeleccionada
+  };
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST","http://localhost:3000/",true);
+  xhr.setRequestHeader("Content-Type","application/json");
+  xhr.send(JSON.stringify(formData));
+});
+
 document.getElementById("prev").addEventListener("click", function(){
   pasarFotos(1);
 });
@@ -66,7 +95,8 @@ function guardarRestpuesta(){
       personas: personas,
       observaciones: observaciones
     };
-    localStorage.setItem(jsonFinal[1]._id, JSON.stringify(data));
+    console.log(fotoSeleccionada);
+    localStorage.setItem(fotoSeleccionada, JSON.stringify(data));
   }
 }
 
@@ -80,7 +110,7 @@ function recargarRespuesta(){
   const observaciones = form.elements["observaciones"];
 
   // Obtener los datos guardados del LocalStorage (si existen)
-  const data = localStorage.getItem(jsonFinal[1]._id);
+  const data = localStorage.getItem(fotoSeleccionada);
   if (data) {
     // Convertir los datos de JSON a un objeto JavaScript
     const formData = JSON.parse(data);
@@ -136,6 +166,11 @@ function colocarFotos(json, split){
   
   let path = "http://localhost:3000" + JSON.stringify(imageSource[0]).substring(2);
   path = path.slice(0, -1);
+  fotoSeleccionada = JSON.stringify(imageSource[0]).substring(2);
+  fotoSeleccionada = fotoSeleccionada.slice(0, -6);
+  
+  const partesRuta = fotoSeleccionada.split('/');
+  fotoSeleccionada = partesRuta[partesRuta.length - 1];
 
   const div = document.createElement('div');
   div.classList.add("image_container");
