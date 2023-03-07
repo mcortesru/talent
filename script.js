@@ -1,5 +1,6 @@
 let fotoSeleccionada;
 
+
 document.getElementById("submit-btn").addEventListener("click", function(e){
   event.preventDefault(e);
 
@@ -18,7 +19,7 @@ document.getElementById("submit-btn").addEventListener("click", function(e){
     lugar: lugar,
     personas: personas,
     observaciones: observaciones,
-    foto: fotoSeleccionada
+    id: fotoSeleccionada
   };
 
   var xhr = new XMLHttpRequest();
@@ -29,10 +30,16 @@ document.getElementById("submit-btn").addEventListener("click", function(e){
 
 document.getElementById("prev").addEventListener("click", function(){
   pasarFotos(1);
+  document.getElementById("form").reset(); 
+  recargarRespuesta();
+
 });
 
 document.getElementById("next").addEventListener("click", function(){
-  pasarFotos(-1)
+  pasarFotos(-1);
+  document.getElementById("form").reset(); 
+  recargarRespuesta();
+
 });
 
 fetch('http://localhost:3000/fotos')
@@ -49,6 +56,7 @@ fetch('http://localhost:3000/fotos')
 
 function pasarFotos(movimiento){
   guardarRestpuesta()
+  console.log("reset");
   document.getElementById("form").reset(); 
   if (movimiento == 1){
     let fotoMainAntigua = jsonFinal[1];
@@ -75,7 +83,6 @@ function pasarFotos(movimiento){
     jsonFinal[2].push(fotoAmeterEnLaDerechaFinal)
   }
 
-  recargarRespuesta();
   colocarFotos(jsonFinal, 0);
 }
 
@@ -98,6 +105,8 @@ function guardarRestpuesta(){
     console.log(fotoSeleccionada);
     localStorage.setItem(fotoSeleccionada, JSON.stringify(data));
   }
+  console.log("reset");
+  document.getElementById("form").reset(); 
 }
 
 function recargarRespuesta(){
