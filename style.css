@@ -12,11 +12,17 @@ header div div{
     background-color: #fff;
 }
 
+
 #container{
+    position: sticky;
+    top: 0;
+    z-index: 999;
     display: flex;
     flex-direction: row;
     width: 100%;
     align-items: center;
+    background-color: #fb9f00	;
+    
 }
 
 .image_container{
@@ -92,7 +98,6 @@ textarea{
 	border-radius:3px;
 	background-color:#f6f6f6;			
 	margin:8px 0;
-	/*resize: vertical | horizontal | none | both*/
 	resize:none;
 	display:block;
 }

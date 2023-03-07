@@ -1,7 +1,3 @@
-document.getElementById("buttomSubmit").addEventListener("click", function() {
-  sendSubmit()
-});
-
 document.getElementById("prev").addEventListener("click", function(){
   pasarFotos(1);
 });
@@ -10,13 +6,10 @@ document.getElementById("next").addEventListener("click", function(){
   pasarFotos(-1)
 });
 
-
-
-fetch('http://localhost:3000/')
+fetch('http://localhost:3000/fotos')
   .then(response => response.json())
   .then(jsonData => {
     // Hacer algo con el JSON obtenido, por ejemplo:
-    
     const modifiedData = jsonData.ids.map(id => {
       return id.map(innerId => `./fotos/${innerId}.jpeg`);
     });
@@ -24,11 +17,6 @@ fetch('http://localhost:3000/')
     jsonFinal = colocarFotos(modifiedData, 1);
   });
 
-
-
-
-
- 
 
 function pasarFotos(movimiento){
   guardarRestpuesta()
@@ -108,8 +96,10 @@ function recargarRespuesta(){
 
 //Coloca las fotos en los divs al inicio
 function colocarFotos(json, split){
+
   if (split == 1){
     var json = JSON.parse(splitJSON(json));
+
   }
 
 
@@ -132,29 +122,38 @@ function colocarFotos(json, split){
   }
   
   for (let i = 0; i < imageSources1.length; i++) {
+    let path = "http://localhost:3000" + JSON.stringify(imageSources1[i][0]).substring(2);
+    path = path.slice(0, -1);
+
     const div = document.createElement('div');
     div.classList.add("image_container");
     const image = document.createElement('img');
     image.classList.add("img_side");
-    image.src = imageSources1[i];
+    image.src = path;
     imagesContainer1.appendChild(div);
     div.appendChild(image);
   }
   
+  let path = "http://localhost:3000" + JSON.stringify(imageSource[0]).substring(2);
+  path = path.slice(0, -1);
+
   const div = document.createElement('div');
   div.classList.add("image_container");
   const image = document.createElement('img');
   imageContainer.classList.add("img_main");
-  image.src = imageSource;
+  image.src = path;
   imageContainer.appendChild(div);
   div.appendChild(image);
     
   for (let i = 0; i < imageSources2.length; i++) {
+    let path = "http://localhost:3000" + JSON.stringify(imageSources1[i][0]).substring(2);
+    path = path.slice(0, -1);
+    
     const div = document.createElement('div');
     div.classList.add("image_container");
     const image = document.createElement('img');
     image.classList.add("img_side");
-    image.src = imageSources2[i];
+    image.src = path;
     imagesContainer2.appendChild(div);
     div.appendChild(image);
   }
@@ -194,37 +193,5 @@ function splitJSON(arr) {
   }
   return ("[" + JSON.stringify(secondArray) + "," +JSON.stringify(arr[randomIndex-1])+ "," + JSON.stringify(firstArray) + "]");
 }
-
-//Escribe los datos escritos en el formulario
-function sendSubmit(){
-  let data = getJsonSubmit();
-  if (data != null){
-    console.log(JSON.stringify(data));
-  }
-}
-
-
-//Devuelve los datos escritos en el formulario
-function getJsonSubmit (){
-  var evento = document.getElementById("evento").value;
-  var fecha = document.getElementById("fecha").value;
-  var lugar = document.getElementById("lugar").value;
-  var personas = document.getElementById("personas").value;
-  var observaciones = document.getElementById("observaciones").value;
-
-  if (evento == "" && fecha == "" && lugar == "" && personas == "" && observaciones == ""){
-    return null;
-  }
-
-  var formData = {
-    "evento": evento,
-    "fecha": fecha,
-    "lugar": lugar,
-    "personas": personas,
-    "observaciones": observaciones
-  };
-  return formData;
-}
-
 
 

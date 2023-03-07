@@ -26,7 +26,7 @@
     </div>
     <br>
     <div>
-    <form id="form">
+    <form id="form" action="http://localhost:3000/" method="POST">
         <label for="evento">Evento:</label>
         <input type="text" id="evento" name="evento">
         <br><br>
@@ -47,9 +47,18 @@
         <textarea id="observaciones" name="observaciones"></textarea>
         <br><br>
 
-        <input type="button" value="Submit" id="buttomSubmit">
+        <button type="buttom" id="submit-btn">Enviar</button>
     </form>
 </div>
+<script>
+    var containerHeight = document.getElementById("container").offsetHeight;
+    document.getElementById("container_flechas").style.marginTop = containerHeight + "px";
+</script>
+
+<script>
+
+</script>
+
 <script src="script.js"></script>
 </body>
 </html>
