@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css.css">
+</head>
+<body>
+    <div id="header">
+        
+        <h1 class="header-h1-main"><span>Repositorio de encuestas</span></h1>
+            <ul id="header-tab-links" class="link-group">
+    </div>
+    <form id="sheet" name="form" action="details.vm" method="post">
+        
+        <div id="left">
+            <h3>Documento de archivo (38 páginas)</h3>
+            <iframe id="page-preview" src="./Captura de pantalla 2023-03-07 a las 9.05.36.png" xwidth="432" xheight="661.1"></iframe>
+        </div>
+        <div id="right">
+            <h3>
+                <select name="pane" id="pane">
+                    <option value="pendiente-de-revisar">Pendiente de revisar</option>
+                    <option value="documentado">Documentado</option>
+                    <option value="no-documentado">No documentado</option>
+                </select>
+            </h3>
+            <table id="pendiente-de-revisar" style="display: block;">
+                <tbody>
+                        <tr class="">
+                            <td class="field">
+                            <label for="value-reference">Evento</label>
+                            </td>
+                            <td class="value">
+                                    <p>TEXTO DE PRUEBA</p>
+                                </td>
+                        </tr>
+                        <tr class="">
+                            <td class="field">
+                            <label>Fecha (como texto)</label>
+                            </td>
+                            <td class="value">
+                                    <p>TEXTO DE PRUEBA</p>
+                                </td>
+                        </tr>
+                        <tr class="">
+                            <td class="field">
+                            <label>Lugar</label>
+                            </td>
+                            <td class="value">
+                                    <p>TEXTO DE PRUEBA</p>
+                                </td>
+                        </tr>
+                        <tr class="">
+                            <td class="field">
+                            <label>Personas</label>
+                            </td>
+                            <td class="value">
+                                    <p>TEXTO DE PRUEBA</p>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td class="field">
+                            <label>Observaciones</label>
+                            </td>
+                            <td class="value">
+                                    <p>TEXTO DE PRUEBA</p>
+                                </td>
+                        </tr>
+                </tbody>
+            </table>
+        
+        </div>
+        <div id="bottom-results">
+            <div class="navigation">
+                <a href="" id="bottom-previous">◀</a>
+                <input type="text" name="bottomCurrent" id="bottom-current" value="1" size="1">
+                <a href="" id="bottom-next">▶</a>
+            </div>
+        </div>
+    </form>
+    
+</body>
+</html>
