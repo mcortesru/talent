@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Formulario</title>
+</head>
+<body>
+
+    <div id="header">
+        <h1 class="header-h1-main"><span>Encuesta de fotos</span></h1>
+    </div>
+
+    <div id="container">
+        <div id="slider_left" class="slider_part">
+        </div>
+
+        <div id="slider_main" class="slider_part">
+
+        </div>
+
+        <div id="slider_right" class="slider_part">
+
+        </div>
+    </div>
+
+    <br>
+
+    <div id="container_flechas">
+        <a id="prev">&#10094;</a>
+        <a id="next">&#10095;</a>
+    </div>
+
+    <br>
+
+    <div>
+    <form id="form">
+        <label for="evento">¿Qué es lo que ves en la foto?</label>
+        <div class="grow-wrap">
+            <textarea rows="1" type="text" id="evento" name="evento" class="input" onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea>
+        </div>
+        <br>
+
+        <label for="fecha">¿Cuándo ocurrió?</label>
+        <div class="grow-wrap">
+            <textarea rows="1" type="text" id="fecha" name="fecha" class="input" onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea>
+        </div>
+        <br>
+        
+        <label for="lugar">¿En qué lugar ocurrió?</label>
+        <div class="grow-wrap">
+            <textarea rows="1" type="text" id="lugar" name="lugar" class="input" onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea>
+        </div>
+        <br>
+        
+        <label for="personas">¿Quiénes aparecen?</label>
+        <div class="grow-wrap">
+            <textarea rows="1" type="text" id="personas" name="personas" class="input" onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea>
+        </div>
+        <br>
+        
+        <label for="observaciones">¿Podrías aportar algo más de información?</label>
+        <div class="grow-wrap">
+            <textarea rows="1" type="text" id="observaciones" name="observaciones" class="input" onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea>
+        </div>
+    <br>
+    <div class="container_buttom">
+        <button type="buttom" id="submit-btn">Enviar</button>
+      </div>
+      
+    </form>
+</div>
+<script>
+    var containerHeight = document.getElementById("container").offsetHeight;
+    document.getElementById("container_flechas").style.marginTop = containerHeight + "px";
+</script>
+
+<script>
+
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>

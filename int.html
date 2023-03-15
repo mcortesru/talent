@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css.css">
+</head>
+<body>
+    <div id="header">
+        
+        <h1 class="header-h1-main"><span>Repositorio de encuestas</span></h1>
+            <ul id="header-tab-links" class="link-group">
+    </div>
+    <form id="sheet" name="form">
+        
+        <div id="left">
+            <h3 id="tit_item">Foto: </h3>
+            <div id="slider_main" class="slider_part"></div>
+
+            <div id="bottom-item">
+                <div class="navigation">
+                    <a href="" id="prev">◀</a>
+                    <input type="text" name="bottomCurrent" id="bottom-current-item" value="1" size="2">
+                    <a href="" id="next">▶</a>
+                </div>
+            </div>
+        </div>
+        <div id="right">
+            <div>
+                <h3 id="com_item">Comentario: </h3>
+                    <table>
+                        <tr>
+                            <td style="display: flex; align-items: center;">
+                                <h3 style="vertical-align: top;">Filtrar por: </h3>
+                            </td>
+                            <td>
+                                <select name="pane" id="filtro" style="margin-left: 1em;">
+                                    <option value="todos">Todos</option>
+                                    <option value="pendiente-de-revisar">Pendiente de revisar</option>
+                                    <option value="documentado">Documentado</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+
+            </div>
+            <div>
+            <table id="pendiente-de-revisar" style="display: block;">
+                <tbody>
+                        <tr class="">
+                            <td class="field">
+                            <label for="value-reference">Evento</label>
+                            </td>
+                            <td class="value">
+                                    <p id="output_evento"> </p>
+                                </td>
+                        </tr>
+                        <tr class="">
+                            <td class="field">
+                            <label>Fecha (como texto)</label>
+                            </td>
+                            <td class="value"  >
+                                    <p id="output_fecha"> </p>
+                                </td>
+                        </tr>
+                        <tr class="" >
+                            <td class="field">
+                            <label>Lugar</label>
+                            </td>
+                            <td class="value">
+                                    <p id="output_lugar"> </p>
+                                </td>
+                        </tr>
+                        <tr class="">
+                            <td class="field">
+                            <label>Personas</label>
+                            </td>
+                            <td class="value">
+                                    <p id="output_personas"> </p>
+                            </td>
+                        </tr>
+                        <tr class="" >
+                            <td class="field">
+                            <label >Observaciones</label>
+                            </td>
+                            <td class="value">
+                                    <p id="output_observaciones"></p>
+                                </td>
+                        </tr><tr class="" >
+                            <td class="field">
+                            <label >Comentarios</label>
+                            </td>
+                            <td class="value">
+                                    <textarea id="output_comentarios"></textarea>
+                                </td>
+                        </tr><tr class="" >
+                            <td class="field">
+                            <label>Estado</label>
+                            </td>
+                            <td class="value">
+                                <select name="pane" id="pane">
+                                    <option value="pendiente-de-revisar">Pendiente de revisar</option>
+                                    <option value="documentado">Documentado</option>
+                                </select>                                
+                            </td>
+                        </tr>
+                            
+                    
+                </tbody>
+            </table>
+                
+            <div id="bottom-results">
+                <div class="navigation">
+                    <a href="" id="prev_com">◀</a>
+                    <input type="text" name="bottomCurrent" id="bottom-current-comment" size="2"">
+                    <a href="" id="next_com">▶</a>
+                </div>
+            </div>
+            <button type="button" id="submit-btn">Guardar</button>
+        </div>
+        
+    </form>
+    <script src="interfazBuena.js"></script>
+</body>
+</html>
